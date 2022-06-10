@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -13,16 +15,21 @@ import {
 export class ProductosController {
   @Get(':productid')
   obtenerproducto(@Param('productid') productid: string) {
-    return `Product ${productid}`;
+    return {
+      message: `Product ${productid}`,
+    };
   }
 
   @Get()
+  @HttpCode(HttpStatus.ACCEPTED)
   getproductos(
     @Query('limite') limite = 12,
     @Query('offset') offset = 24,
     @Query('marca') marca = 'luis',
   ) {
-    return `productos ${limite} el offset = ${offset} la Marca = ${marca}`;
+    return {
+      message: `productos ${limite} el offset = ${offset} la Marca = ${marca}`,
+    };
   }
 
   @Post()
