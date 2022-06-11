@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
-
-import { producto } from './../entities/productos.entity';
 import { producto } from '../entities/productos.entity';
 
 @Injectable()
 export class ProductosService {
-  private contadorproducto = 0;
+  private contadorproducto = 1;
   private productos: producto[] = [
     {
       id: 1,
@@ -23,7 +21,7 @@ export class ProductosService {
   findOne(id: number) {
     return this.productos.find((item) => item.id === id);
   }
-  create(payload:any){
+  create(payload: any) {
     this.contadorproducto = this.contadorproducto + 1;
     const newproducto = {
       id: this.contadorproducto,
@@ -31,5 +29,18 @@ export class ProductosService {
     };
     this.productos.push(newproducto);
     return newproducto;
+  }
+
+  update(id: number, Payload: any) {
+    const producto = this.findOne(id);
+    if (producto) {
+      const index = this.productos.findIndex((item) => item.id === id);
+      this.productos[index] = {
+        ...producto,
+        ...Payload,
+      };
+      return this.productos[index];
+    }
+    return null;
   }
 }
