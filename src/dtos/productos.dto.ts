@@ -1,35 +1,27 @@
 import { isString, isNumber, isURL, isNotEmpty } from 'class-validator';
 
+export class crearProductoDto {
+  @isString()
+  @isNotEmpty()
+  readonly nombre: string;
 
-export  class crearProductoDto{
+  @isString()
+  @isNotEmpty()
+  readonly descripcion: string;
 
-    @isString()
-    @isNotEmpty()
-    readonly nombre:string;
+  @isNumber()
+  @isNotEmpty()
+  readonly precio: number;
 
-    @isString()
-    @isNotEmpty()
-    readonly descripcion:string;
+  @isNumber()
+  @isNotEmpty()
+  readonly stock: number;
 
-    @isNumber()
-    @isNotEmpty()
-    readonly precio:number;
-
-    @isNumber()
-    @isNotEmpty()
-    readonly stock:number;
-
-    @isURL()
-    @isNotEmpty()
-    readonly imagen:string;
-
-};
-
-export  class actualizarProductoDto{
-    readonly nombre?:string;
-    readonly descripcion?:string;
-    readonly precio?:number;
-    readonly stock?:number;
-    readonly imagen?:string;
-
+  @isURL()
+  @isNotEmpty()
+  readonly imagen: string;
 }
+
+import { PartialType } from '@nestjs/mapped-types';
+
+export class actualizarProductoDto extends PartialType(crearProductoDto) {}
