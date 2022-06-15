@@ -1,24 +1,24 @@
-import { isString, isNumber, isURL, isNotEmpty } from 'class-validator';
+import { IsString, IsNumber, IsUrl, IsNotEmpty } from 'class-validator';
 
 export class crearProductoDto {
-  @isString()
-  @isNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   readonly nombre: string;
 
-  @isString()
-  @isNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   readonly descripcion: string;
 
-  @isNumber()
-  @isNotEmpty()
+  @IsNumber()
+  @IsNotEmpty()
   readonly precio: number;
 
-  @isNumber()
-  @isNotEmpty()
+  @IsNumber()
+  @IsNotEmpty()
   readonly stock: number;
 
-  @isURL()
-  @isNotEmpty()
+  @IsUrl()
+  @IsNotEmpty()
   readonly imagen: string;
 }
 
