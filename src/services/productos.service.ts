@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { throws } from 'assert';
 import { producto } from '../entities/productos.entity';
 
@@ -9,7 +9,7 @@ export class ProductosService {
     {
       id: 1,
       nombre: 'producto 1',
-      descripcion: 'bla bla',
+      descripcion: 'Esto es un producto',
       precio: 12365,
       stock: 235,
       imagen: 'sdfdsfdf',
@@ -21,7 +21,7 @@ export class ProductosService {
   }
   findOne(id: number) {
     const product = this.productos.find((item) => item.id === id);
-    if(!product){
+    if (!product) {
       throw new NotFoundException('el producto no existe');
     }
     return product;
@@ -52,12 +52,12 @@ export class ProductosService {
     return null;
   }
 
-  remove(id: number){
+  remove(id: number) {
     const index = this.productos.findIndex((item) => item.id === id);
-    if(index=== -1){
+    if (index === -1) {
       throw new NotFoundException('el producto no existe');
     }
-    this.productos.splice(index, 1)
-    return true
+    this.productos.splice(index, 1);
+    return true;
   }
 }
