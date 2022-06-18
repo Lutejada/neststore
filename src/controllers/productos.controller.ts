@@ -16,7 +16,6 @@ import { ProductosService } from './../services/productos.service';
 import { crearProductoDto } from './../dtos/productos.dto';
 import { actualizarProductoDto } from '../dtos/productos.dto';
 
-
 @Controller('productos')
 export class ProductosController {
   constructor(private productoService: ProductosService) {}
@@ -52,16 +51,17 @@ export class ProductosController {
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() payload: actualizarProductoDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: actualizarProductoDto,
+  ) {
     return this.productoService.update(id, payload);
   }
 
   @Delete(':id')
   eliminar(@Param('id', ParseIntPipe) id: number) {
     //return {
-      //id,
-    return this.productoService.remove(id)
-
-    };
+    //id,
+    return this.productoService.remove(id);
   }
-
+}
